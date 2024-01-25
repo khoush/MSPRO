@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'dart:typed_data';
+
+import 'package:nom_du_projet/screens/statistic.dart';
 
 class SecondPage extends StatelessWidget {
   @override
@@ -68,22 +69,43 @@ class _MyFormState extends State<MyForm> {
 
  Future<void> _uploadImageToFirestore() async {
   if (_selectedImage != null) {
-// Convert to Uint8List
-
+    // Convert to Uint8List
     String image = DateTime.now().millisecondsSinceEpoch.toString();
     Reference storageReference =
         FirebaseStorage.instance.ref().child('image/$image.jpg');
 
-        final SettableMetadata metadata = SettableMetadata(
+    final SettableMetadata metadata = SettableMetadata(
       contentType: 'image/jpeg',
       customMetadata: {'picked-file-path': _selectedImage!.path},
     );
+
     await storageReference.putFile(File(_selectedImage!.path), metadata);
+
     await storageReference.getDownloadURL().then((value) async {
       await saveDataToFirestore(value);
+
+      // Show an AlertDialog when the ticket is successfully added
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Ticket ajouté avec succée'),
+            content: Text(''),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
     });
   }
 }
+
 
   Future<void> saveDataToFirestore(String imageURL) async {
     String ticket = _ticketController.text;
@@ -152,7 +174,7 @@ class _MyFormState extends State<MyForm> {
               width: 350, // Set the desired width
   height: 50,
   decoration: BoxDecoration(
-    color: Colors.white,
+    color:  Colors.grey[200],
     borderRadius: BorderRadius.circular(20),
     boxShadow: [
       BoxShadow(
@@ -170,15 +192,15 @@ class _MyFormState extends State<MyForm> {
     hintText: "Ticket N°",
        hintStyle: TextStyle(
       fontSize: 14.0, // ajustez la taille selon vos préférences
-      color: Color(0xFF9F9F9F),
+      color: Colors.black,
     ),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(20),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
-          color: Colors.white,
+          color: Colors.grey,
           width: 1,
         ),
       ),
@@ -211,7 +233,7 @@ class _MyFormState extends State<MyForm> {
               width: 350, // Set the desired width
   height: 50,
   decoration: BoxDecoration(
-    color: Colors.white,
+    color: Colors.grey[200],
     borderRadius: BorderRadius.circular(20),
     boxShadow: [
       BoxShadow(
@@ -229,7 +251,7 @@ class _MyFormState extends State<MyForm> {
       hintText: "Utilisateur",
        hintStyle: TextStyle(
       fontSize: 14.0, // ajustez la taille selon vos préférences
-      color: Color(0xFF9F9F9F),
+      color: Colors.black,
     ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
@@ -270,7 +292,7 @@ SizedBox(height: 5.0,),
               width: 350, // Set the desired width
   height: 50,
   decoration: BoxDecoration(
-    color: Colors.white,
+    color:  Colors.grey[200],
     borderRadius: BorderRadius.circular(20),
     boxShadow: [
       BoxShadow(
@@ -288,10 +310,10 @@ SizedBox(height: 5.0,),
     hintText: "Date et Heure de création",
        hintStyle: TextStyle(
       fontSize: 14.0, // ajustez la taille selon vos préférences
-      color: Color(0xFF9F9F9F),
+      color: Colors.black,
     ),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(20),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
@@ -330,7 +352,7 @@ Container(
   width: 350, // Set the desired width
   height: 50,
   decoration: BoxDecoration(
-    color: Colors.white,
+    color:  Colors.grey[200],
     borderRadius: BorderRadius.circular(20),
     boxShadow: [
       BoxShadow(
@@ -348,7 +370,7 @@ Container(
       hintText: "Email",
        hintStyle: TextStyle(
       fontSize: 14.0, // ajustez la taille selon vos préférences
-      color: Color(0xFF9F9F9F),
+      color: Colors.black,
     ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
@@ -449,7 +471,7 @@ Container(
   width: 350, // Set the desired width
   height: 50,
   decoration: BoxDecoration(
-    color: Colors.white,
+    color:  Colors.grey[200],
     borderRadius: BorderRadius.circular(20),
     boxShadow: [
       BoxShadow(
@@ -467,7 +489,7 @@ Container(
       hintText: "Client",
        hintStyle: TextStyle(
       fontSize: 14.0, // ajustez la taille selon vos préférences
-      color: Color(0xFF9F9F9F),
+      color: Colors.black,
     ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
@@ -685,7 +707,10 @@ Expanded(
       Expanded(
         child: ElevatedButton(
           onPressed: () {
-            // Handle button click
+            Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => StatPage()), // Remplacez "NouvellePage" par le nom de votre nouvelle page
+                    );
           },
           style: ElevatedButton.styleFrom(
             primary: Color(0xFF002E7F), // Set the desired color
@@ -747,3 +772,4 @@ SizedBox(height: 3.0),
     );
   }
 }
+  
