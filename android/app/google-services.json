@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "1005128813885",
+    "project_id": "msprohelp",
+    "storage_bucket": "msprohelp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005128813885:android:818570913dcdf3b7090954",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Heccu8vZK5s3tk9uyYbiYmtmRQYrw68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005128813885:android:1d10778a7b224480090954",
+        "android_client_info": {
+          "package_name": "com.example.nom_du_projet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Heccu8vZK5s3tk9uyYbiYmtmRQYrw68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005128813885:android:4ecaea3c25352072090954",
+        "android_client_info": {
+          "package_name": "prohelp.ms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Heccu8vZK5s3tk9uyYbiYmtmRQYrw68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
