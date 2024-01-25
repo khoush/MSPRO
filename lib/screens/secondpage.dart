@@ -178,7 +178,7 @@ class _MyFormState extends State<MyForm> {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
-          color: Colors.green,
+          color: Colors.white,
           width: 1,
         ),
       ),
